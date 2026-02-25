@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn, signOut } from "@/auth";
+import { signIn } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { LoginSchema, RegisterSchema } from "@/lib/zod";
 import bcrypt from "bcrypt";
@@ -57,13 +57,9 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         case "CredentialsSignin":
           return { error: "아이디 또는 비밀번호가 일치하지 않습니다." };
         default:
-          return { error: `알 수 없는 오류가 발생했습니다.${"\n"}${error.message}` };
+          return { error: "알 수 없는 오류가 발생했습니다." };
       }
     }
     throw error;
   }
-};
-
-export async function logout() {
-  await signOut({ redirectTo: "/login" });
 };
