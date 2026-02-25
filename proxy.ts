@@ -2,10 +2,20 @@ import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
 export default auth((req) => {
-  if (!req.auth && req.nextUrl.pathname !== "/login" && req.nextUrl.pathname !== "/signup") {
-    const newUrl = new URL("/login", req.nextUrl.origin);
-    return NextResponse.redirect(newUrl);
+  const isLoggedIn = !!req.auth;
+  
+  const { pathname } = req.nextUrl;
+  const isOnAuthPage = pathname === "/login" || pathname === "/signup";
+
+  if (!isLoggedIn && !isOnAuthPage) {
+    return NextResponse.redirect(new URL("/login", req.nextUrl.origin));
   }
+
+  if (isLoggedIn && isOnAuthPage) {
+    return NextResponse.redirect(new URL("/", req.nextUrl.origin));
+  }
+  
+  return NextResponse.next();
 });
 
 export const config = {
