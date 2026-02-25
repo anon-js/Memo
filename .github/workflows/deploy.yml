@@ -54,6 +54,7 @@ jobs:
 
             if git diff --name-only $PREVIOUS_COMMIT HEAD | grep -qE "^(app/|src/|components/|lib/|public/|next.config.|tailwind.config.)"; then
               echo " > Source code changed. Building..."
+              pnpm dlx prisma generate
               pnpm build
               
               echo " "
