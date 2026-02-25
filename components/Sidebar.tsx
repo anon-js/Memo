@@ -1,12 +1,12 @@
 "use client";
 
-import { logout } from "@/app/actions/auth";
 import { createMemo } from "@/app/actions/memo";
 import { EllipsisVertical, LogOut, Plus, Settings } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MemoItem from "./MemoItem";
+import { signOut } from "next-auth/react";
 
 export function Sidebar({ user, memos }: { user: any; memos: any[] }) {
   const router = useRouter();
@@ -35,6 +35,10 @@ export function Sidebar({ user, memos }: { user: any; memos: any[] }) {
     } catch (error) {
       console.error("메모 생성 실패:", error);
     }
+  };
+
+  const handleLogout = async () => {
+    await signOut({ redirectTo: "/login" });
   };
 
   if (!isMounted) return null;
@@ -86,12 +90,13 @@ export function Sidebar({ user, memos }: { user: any; memos: any[] }) {
                 <span>프로필 설정</span>
               </Link>
               <hr className="my-1 border-gray-200" />
-              <form action={logout}>
-                <button className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition rounded-lg">
-                  <LogOut size={16} />
-                  <span>로그아웃</span>
-                </button>
-              </form>
+              <button
+                className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition rounded-lg"
+                onClick={handleLogout}
+              >
+                <LogOut size={16} />
+                <span>로그아웃</span>
+              </button>
             </div>
           </div>
         )}
