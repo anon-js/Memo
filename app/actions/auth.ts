@@ -1,10 +1,11 @@
 "use server";
 
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { LoginSchema, RegisterSchema } from "@/lib/zod";
 import bcrypt from "bcrypt";
 import { AuthError } from "next-auth";
+import { cookies } from "next/headers";
 import * as z from "zod";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
@@ -62,4 +63,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
     throw error;
   }
+};
+
+export const logout = async () => {
+  await signOut({ redirectTo: "/login" });
 };

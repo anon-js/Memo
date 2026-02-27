@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
+import SettingsForm from "@/components/form/SettingsForm";
 import { prisma } from "@/lib/prisma";
-import SettingsForm from "@/components/SettingsForm";
 
 export default async function SettingsPage() {
   const session = await auth();

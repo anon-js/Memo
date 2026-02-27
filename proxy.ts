@@ -11,10 +11,6 @@ export default NextAuth(authConfig).auth((req) => {
     return NextResponse.redirect(new URL("/login", req.nextUrl.origin));
   }
 
-  if (isLoggedIn && isOnAuthPage) {
-    return NextResponse.redirect(new URL("/", req.nextUrl.origin));
-  }
-
   return NextResponse.next();
 });
 
