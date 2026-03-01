@@ -19,7 +19,7 @@ jobs:
           command_timeout: 30m
           script: |
             export PATH=$HOME/.nvm/versions/node/v22.22.0/bin:$PATH
-            cd ~/htdocs/memo
+            cd ~/htdocs/memo-nextjs-prisma
 
             echo " "
             echo " "
@@ -70,7 +70,7 @@ jobs:
               else
                 echo " > Server is NOT running. Starting fresh..."
 
-                pm2 start pnpm --name "memo" -- start -p 4003
+                pm2 start pnpm --name "memo" -- start
               fi
 
               echo " > Server Operation Complete."
