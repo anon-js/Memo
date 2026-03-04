@@ -38,7 +38,7 @@ jobs:
             fi
 
             echo "[Step 3] Build Decision..."
-            if [ -n "$CHANGED_FILES" ] then
+            if [ -n "$CHANGED_FILES" ]; then
               echo " > Source code changed. Building..."
               pnpm build
               
