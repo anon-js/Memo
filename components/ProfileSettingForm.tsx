@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { updateProfile, deleteAccount } from "@/app/actions/user";
 import { Save, Trash2, AlertTriangle } from "lucide-react";
 
-export default function SettingsForm({ user }: { user: any }) {
+export default function ProfileSettingForm({ user }: { user: any }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
