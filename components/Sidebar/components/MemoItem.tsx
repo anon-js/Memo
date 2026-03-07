@@ -14,7 +14,7 @@ interface MemoProps {
   activeId: string | null;
 }
 
-export function MemoItem({ memo, allMemos, depth, activeId }: MemoProps) {
+export default function MemoItem({ memo, allMemos, depth, activeId }: MemoProps) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 

@@ -156,9 +156,11 @@ export default function SignupPage() {
             </div>
           )}
 
-          <hr className="border-gray-200 my-2" />
-
-          <Button type="submit" isLoading={isPending}>
+          <Button
+            type="submit"
+            isLoading={isPending}
+            fullWidth
+          >
             회원가입
           </Button>
 

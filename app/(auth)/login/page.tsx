@@ -46,7 +46,13 @@ export default function LoginPage() {
             required
           />
           {error && <div className="p-3 bg-red-50 text-red-600 text-sm rounded-md border border-red-200">{error}</div>}
-          <Button type="submit" isLoading={isPending}>로그인</Button>
+          <Button
+            type="submit"
+            isLoading={isPending}
+            fullWidth
+          >
+            로그인
+          </Button>
         </form>
         <p className="text-center mt-6 text-sm text-gray-600">
           메모가 처음이신가요? <Link href="/signup" className="text-blue-600 hover:underline">회원가입</Link>
