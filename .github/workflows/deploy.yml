@@ -21,33 +21,14 @@ jobs:
             export PATH=$HOME/.nvm/versions/node/v22.22.0/bin:$PATH
             cd ~/htdocs/memo-nextjs-prisma
 
-            echo "[Step 1] Fetching latest code..."
-            PREVIOUS_COMMIT=$(git rev-parse HEAD)
-            
+            echo "[Step 1] 소스 코드 최신화"
             git fetch origin main
             git reset --hard origin/main
-            CURRENT_COMMIT=$(git rev-parse HEAD)
 
-            echo "[Step 2] Dependency & Prisma Check..."
-            if echo "$CHANGED_FILES" | grep -qE "package.json|pnpm-lock.yaml|prisma/schema.prisma"; then
-              echo " > Dependencies or Schema changed. Installing..."
-              pnpm install --frozen-lockfile
-              pnpm dlx prisma generate
-            else
-              echo " > No major dependency changes."
-            fi
+            echo "[Step 2] 의존성 및 Prisma 최신화"
+            pnpm install --frozen-lockfile
+            pnpm dlx prisma generate
 
-            echo "[Step 3] Build Decision..."
-            if [ -n "$CHANGED_FILES" ]; then
-              echo " > Source code changed. Building..."
-              pnpm build
-              
-              echo "[Step 4] Server Reload..."
-              if pm2 describe memo > /dev/null 2>&1; then
-                pm2 reload memo --update-env
-              else
-                pm2 start pnpm --name "memo" -- start -p 3003
-              fi
-            else
-              echo " > No source changes. Skipping build."
-            fi
+            echo "[Step 3] Build & Server Reload"
+            pnpm build
+            pm2 reload memo --update-env
