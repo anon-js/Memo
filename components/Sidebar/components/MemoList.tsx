@@ -24,13 +24,11 @@ export default function MemoList({ memos, activeId }: MemoListProps) {
   }
 
   return (
-    <div className="p-2 space-y-0.5">
+    <div className="p-2.5 space-y-1.5">
       {rootMemos.map((memo) => (
         <MemoItem
           key={memo.id}
           memo={memo}
-          allMemos={memos}
-          depth={0}
           activeId={activeId}
         />
       ))}

@@ -74,12 +74,12 @@ export function EditorHeader({
             {isSaving ? (
               <div className="flex items-center gap-1.5">
                 <Loader2 size={12} className="animate-spin" />
-                <span className="text-[11px] font-medium">저장 중...</span>
+                <span className="text-sm font-medium">저장 중...</span>
               </div>
             ) : (
               <div className="flex items-center gap-1">
                 <Clock size={12} />
-                <span className="text-[11px] font-normal">{formatDate(updatedAt)}</span>
+                <span className="text-sm font-normal">{formatDate(updatedAt)}</span>
               </div>
             )}
           </div>
