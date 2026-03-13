@@ -39,8 +39,8 @@ export function Sidebar({ user, memos }: SidebarProps) {
   return (
     <aside 
       className={`
-        bg-gray-50 border-r border-gray-200 h-screen transition-all duration-300 ease-in-out
-        ${isSidebarOpen ? "w-96" : "w-0"}
+        bg-gray-50 border-gray-200 transition-all duration-300 ease-in-out h-full
+        ${isSidebarOpen ? "w-96 border  rounded-xl shadow-xl" : "w-0"}
       `}
     >
       <div className={`${isSidebarOpen ? "opacity-100" : "opacity-0 hidden"} transition-opacity duration-200`}>
